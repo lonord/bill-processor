@@ -80,7 +80,6 @@ def process_bill_files(bill_dir: str, db_path: str) -> int:
         try:
             file_mtime = int(os.path.getmtime(file_path))
             if file_mtime <= max_update_time:
-                print(f"\nSkipping file: {filename} (file mtime: {file_mtime} <= max UPDATE_TIME: {max_update_time})")
                 skipped_count += 1
                 continue
         except OSError as e:

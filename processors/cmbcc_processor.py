@@ -184,6 +184,9 @@ class CmbccProcessor(BaseProcessor):
             if not previous_month_exists:
                 print(f"Skipping cross-month record: filename month {file_month}, record month {month} (previous month bill file does not exist)")
                 return ""
+            # January files may contain previous December records, which belong to the previous year.
+            if file_month == "01" and month == "12":
+                year = str(int(year) - 1)
         
         # Concatenate complete time, fill hours:minutes:seconds with 0
         return f"{year}-{month}-{day} 00:00:00"
